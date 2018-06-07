@@ -12,7 +12,8 @@ $result = $mysqli->query("SELECT * FROM user WHERE name='$username' AND password
 
 if($result->num_rows == 0) {
 	$_SESSION['message'] = "Gebruiker bestaat niet";
-	header("location: error.php");
+	echo $username;
+	//header("location: error.php");
 } else {
 	//user array
 	$user = $result->fetch_assoc();
