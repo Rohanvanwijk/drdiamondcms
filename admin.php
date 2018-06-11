@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,14 +11,24 @@
 	<article class="container">
 		<article class="jumbotron">
 			<h1>Admin login</h1>
-			<tt>Rohan is cool</tt>
+			<tt>Standaard is admin@admin</tt>
+			<?php
+
+
+			if (isset($_SESSION['message'])) {
+				if ($_SESSION['message'] != '') {
+					echo "<div class='alert alert-danger' role='alert'>" . $_SESSION['message'] . "</div>";
+				}
+			}
+
+			?>
 			<form action="login.php" method="POST" class="form-signin">
 				<section class="form-group">
-			
+
 					<input type="text" name="username" class="form-control" placeholder="Username" required="true" autofocus="true">
 				</section>
 				<section class="form-group">
-			
+
 					<input type="password" name="password" class="form-control" placeholder="Password" required="true">
 				</section>
 				<button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>

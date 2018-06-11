@@ -11,13 +11,14 @@ $result = $mysqli->query("SELECT * FROM user WHERE name='$username' AND password
 
 
 if($result->num_rows == 0) {
-	$_SESSION['message'] = "Gebruiker bestaat niet";
-	
-	header("location: error.php");
+	$_SESSION['message'] = "Login onjuist";
+	$_SESSION['loggedin'] = false;
+	header("location: admin.php");
 } else {
+	$_SESSION['loggedin'] = true;
 	//user array
 	$user = $result->fetch_assoc();
-	
+
 	$_SESSION['name'] = $user['name'];
 	$_SESSION['email'] = $user['email'];
 	getGameset();
