@@ -18,6 +18,7 @@ if (!isset($_SESSION['loggedin']) || ($_SESSION['loggedin'] == false)) {
 		<a href="logout.php"><button class="btn btn-success">log out</button></a>
 	</nav>
 	<article class="jumbotron">
+		<h3>Totaal aantal gebruikers:</h3>
 			<section class="form-group">
 				<h3>Aantal levels</h3>
 				<span class="badge badge-success" id="outputLevels"><?php echo $_SESSION['aantal_levels'] ?></span>
