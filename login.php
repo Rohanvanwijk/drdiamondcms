@@ -22,10 +22,12 @@ if($result->num_rows == 0) {
 	$_SESSION['name'] = $user['name'];
 	$_SESSION['email'] = $user['email'];
 	getGameset();
+	getGame_gebruikers();
 	header("location: dashboard.php");
 
 }
 
+//game instellingen ophalen uit MYsql db
 function getGameset() {
 	global $mysqli;
 	$query = "SELECT * FROM game";
@@ -34,8 +36,14 @@ function getGameset() {
 		$game = $result->fetch_assoc();
 		$_SESSION['aantal_levels'] = $game['aantal_levels'];
 		$_SESSION['bedrag_don'] = $game['bedrag_don'];
+		$_SESSION['max_score'] = $game['max_score'];
 	}
 }
 
-
-?>
+function getGame_gebruikers() {
+	global $mysqli;
+	$query = "SELECT * FROM game_gebruikers";
+	$result = $mysqli->query($query);
+	$_SESSION['aantalgamegebruikers'] = $result->num_rows;
+}
+	?>

@@ -18,7 +18,8 @@ if (!isset($_SESSION['loggedin']) || ($_SESSION['loggedin'] == false)) {
 		<a href="logout.php"><button class="btn btn-success">log out</button></a>
 	</nav>
 	<article class="jumbotron">
-		<h3>Totaal aantal gebruikers:</h3>
+		<h3>Totaal aantal Dr. Diamond gebruikers:</h3>
+		<span class="badge badge-success" id="outputLevels"><?php echo $_SESSION['aantalgamegebruikers']; ?></span>
 			<section class="form-group">
 				<h3>Aantal levels</h3>
 				<span class="badge badge-success" id="outputLevels"><?php echo $_SESSION['aantal_levels'] ?></span>
@@ -27,10 +28,28 @@ if (!isset($_SESSION['loggedin']) || ($_SESSION['loggedin'] == false)) {
 				<input type="submit" class="btn btn-primary" id="btn-level" value="Wijzig"></input>
 			</section>
 			<section class="form-group">
+				<h3>Maximaal aantal score</h3>
+				<span class="badge badge-success" id="outputLevels"><?php echo $_SESSION['max_score']; ?></span>
+				<small>Wijzig hier het maximaal score om een level te voltooien.</small> <br>
+				<input type="number" name="aantal_levels" id="aantal_levels">
+				<input type="submit" class="btn btn-primary" id="btn-level" value="Wijzig"></input>
+			</section>
+			<section class="form-group">
 				<h3>Bedrag donatie</h3>
 				<span class="badge badge-success" id="outputDonatie"><?php echo $_SESSION['bedrag_don']; ?></span>
 				<small>Wijzig hier het bedrag van de donaties in Euro.</small> <br>
 				<input type="number" name="bedrag_don" id="inputDonatie">
+				<button type="submit" class="btn btn-primary" id="btn-donatie">Wijzig</button>
+			</section>
+
+			<section class="form-group">
+				<h3>Wijzig admin wachtwoord</h3>
+				<span>Oud wachtwoord</span>
+				<input type="password" name="bedrag_don" id="inputDonatie" class="form-control"> <br>
+				<span>Nieuw wachtwoord</span>
+				<input type="password" class="form-control"> <br>
+				<span>Herhaal wachtwoord</span>
+				<input type="password" class="form-control"> <br>
 				<button type="submit" class="btn btn-primary" id="btn-donatie">Wijzig</button>
 			</section>
 
