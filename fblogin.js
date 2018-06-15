@@ -9,11 +9,15 @@ function statusChangeCallback(response) {
   // for FB.getLoginStatus().
   if (response.status === 'connected') {
     // Logged into your app and Facebook.
-    //window.location.replace("game.html");
-    $.post('./update.php', {userid: userid}, function(data) {
+
+
+    testAPI();
+
+    //Stuur data naar update.php
+    $.post('update.php', {userid: userid}, function(data) {
       console.log(data);
     });
-
+    //window.location.replace("game.html");
   } else {
     // The person is not logged into your app or we are unable to tell.
     document.getElementById('status').innerHTML = 'Please log ' +

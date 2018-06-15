@@ -14,6 +14,30 @@ if (isset($_POST['level']) === true && empty ($_POST['level']) === false) {
 	$updatequery = "UPDATE game SET bedrag_don = '$bedrag'";
 	$mysqli->query($updatequery);
 	selectAll(1);
+} else if(isset($_POST['userid']) && empty ($_POST['userid']) === false) {
+	$gebruiker = $_POST['userid'];
+	insertFBgebruiker($gebruiker);
+	echo $gebruiker;
+}
+
+function insertFBgebruiker($gebruiker) {
+	global $mysqli;
+
+	if(gebruikerbestaatal($gebruiker) === false) {
+		$query = "insert into game_gebruikers (userid, score) values ('$gebruiker', 0)";
+		$result = $mysqli->query($query);
+	}
+
+}
+
+function gebruikerbestaatal($gebruiker) {
+	global $mysqli;
+
+	$query = "SELECT * FROM game_gebruikers where userid = '$gebruiker'";
+	$result = $mysqli->query($query);
+	if($result->num_rows == 0) {
+		return false;
+	} return true;
 }
 
 function selectAll($r) {
@@ -29,7 +53,4 @@ function selectAll($r) {
 	}
 
 }
-
-
-
 ?>
