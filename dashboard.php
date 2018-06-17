@@ -42,17 +42,21 @@ if (!isset($_SESSION['loggedin']) || ($_SESSION['loggedin'] == false)) {
 				<button type="submit" class="btn btn-primary" id="btn-donatie">Wijzig</button>
 			</section>
 
+			<form action="wijzigwachtwoord.php" method="post">
 			<section class="form-group">
 				<h3>Wijzig admin wachtwoord</h3>
+				<span class="badge badge-danger"><?php if (isset($_SESSION['passmessage'])) {
+					echo $_SESSION['passmessage'];
+				} ?></span><br>
 				<span>Oud wachtwoord</span>
-				<input type="password" name="bedrag_don" id="inputDonatie" class="form-control"> <br>
+				<input type="password" name="oldpassword" id="inputDonatie" class="form-control"> <br>
 				<span>Nieuw wachtwoord</span>
-				<input type="password" class="form-control"> <br>
+				<input type="password" class="form-control" name="newpass1"> <br>
 				<span>Herhaal wachtwoord</span>
-				<input type="password" class="form-control"> <br>
+				<input type="password" class="form-control" name="newpass2"> <br>
 				<button type="submit" class="btn btn-primary" id="btn-donatie">Wijzig</button>
 			</section>
-
+		</form>
 	</article>
 
 </body>

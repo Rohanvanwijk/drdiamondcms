@@ -6,24 +6,30 @@ if(!isset($_SESSION)) {
 $username = $mysqli->escape_string($_POST['username']);
 $password = $mysqli->escape_string($_POST['password']);
 
-$result = $mysqli->query("SELECT * FROM user WHERE name='$username' AND password='$password'");
-
-
+$result = $mysqli->query("SELECT * FROM user where name ='$username'");
 
 if($result->num_rows == 0) {
-	$_SESSION['message'] = "Login onjuist";
+	$_SESSION['message'] = "Gebruiker bestaat niet.";
 	$_SESSION['loggedin'] = false;
 	header("location: admin.php");
 } else {
-	$_SESSION['loggedin'] = true;
+
 	//user array
 	$user = $result->fetch_assoc();
+	$passwordcheck = password_verify($password, $user['password']);
+	if ($passwordcheck == 1) {
+		$_SESSION['name'] = $user['name'];
+		$_SESSION['email'] = $user['email'];
+		$_SESSION['loggedin'] = true;
+		getGameset();
+		getGame_gebruikers();
+		header("location: dashboard.php");
+	} else {
+		$_SESSION['message'] = "Login onjuist.";
+		header("location: admin.php");
+	}
 
-	$_SESSION['name'] = $user['name'];
-	$_SESSION['email'] = $user['email'];
-	getGameset();
-	getGame_gebruikers();
-	header("location: dashboard.php");
+
 
 }
 
